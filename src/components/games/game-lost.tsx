@@ -11,12 +11,14 @@ import {
 import React, { useEffect, useState } from "react";
 
 interface GameLostProps {
+  correctAnswer: string;
   gameLost: boolean;
   onRetry: () => void;
   onSelectDifferentGame: () => void;
 }
 
 export default function GameLost({
+  correctAnswer,
   gameLost,
   onRetry,
   onSelectDifferentGame,
@@ -37,7 +39,8 @@ export default function GameLost({
         <AlertDialogHeader>
           <AlertDialogTitle>You Lost...</AlertDialogTitle>
           <AlertDialogDescription>
-            Try again, or select a different game.
+            <p>The correct answer was: {correctAnswer}</p>
+            <p>Try again, or select a different game.</p>
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

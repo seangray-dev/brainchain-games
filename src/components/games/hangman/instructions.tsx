@@ -13,18 +13,14 @@ export default function HangmanInstructions() {
         blanks. If it’s not, part of the hangman drawing will appear.
       </li>
       <li>
-        <ul>
-          <li>
-            <strong>Win:</strong> You win the game by guessing all the letters
-            correctly before the hangman drawing is complete. Successfully guess
-            the word or phrase, and you’ll be congratulated!
-          </li>
-          <li>
-            <strong>Lose:</strong> If you make 6 incorrect guesses the hangman
-            drawing will be complete and it's game over. You’ll have the option
-            to retry the same game or go back to select a different one.
-          </li>
-        </ul>
+        <strong>Win:</strong> You win the game by guessing all the letters
+        correctly before the hangman drawing is complete. Successfully guess the
+        word or phrase, and you’ll be congratulated!
+      </li>
+      <li>
+        <strong>Lose:</strong> If you make 6 incorrect guesses the hangman
+        drawing will be complete and it's game over. You’ll have the option to
+        retry the same game or go back to select a different one.
       </li>
       <li>
         <strong>No Repeats:</strong> Once you’ve selected a letter, it will be
