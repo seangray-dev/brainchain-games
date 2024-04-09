@@ -1,4 +1,5 @@
 "use client";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,6 +16,8 @@ import { useState } from "react";
 import HangMan from "../games/hangman/hangman";
 import HangmanInstructions from "../games/hangman/instructions";
 import HowToPlay from "../games/how-to-play";
+import MemoryInstructions from "../games/memory/instructions";
+import Memory from "../games/memory/memory";
 import { Button } from "../ui/button";
 import GameCards from "../ui/game-cards";
 
@@ -23,6 +26,7 @@ export default function SelectGame() {
 
   const gameInstructions: { [key: string]: JSX.Element } = {
     hangman: <HangmanInstructions />,
+    memory: <MemoryInstructions />,
   };
 
   const selectGame = (gameId: string) => {
@@ -37,6 +41,8 @@ export default function SelectGame() {
     switch (currentGame) {
       case "hangman":
         return <HangMan onSelectDifferentGame={goBackToGameSelection} />;
+      case "memory":
+        return <Memory onSelectDifferentGame={goBackToGameSelection} />;
       default:
         return <div>Game not found</div>;
     }
