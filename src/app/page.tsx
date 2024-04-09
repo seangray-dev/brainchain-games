@@ -1,5 +1,9 @@
-import Image from "next/image";
+import SelectGame from "@/components/layout/select-game";
 
 export default function Home() {
-  return <main className="container flex flex-1 flex-col">Home Page</main>;
+  return (
+    <main className="flex w-full flex-1 flex-col py-10">
+      <SelectGame />
+    </main>
+  );
 }
