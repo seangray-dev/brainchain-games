@@ -81,7 +81,6 @@ export default function HangMan({ onSelectDifferentGame }: HangManProps) {
 
   useEffect(() => {
     if (gameWon) {
-      // Update the gameWins atom to mark Hangman as won
       setGameWins((prevWins) => {
         const newWins = new Map(prevWins);
         newWins.set("hangman", true);
