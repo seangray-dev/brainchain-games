@@ -2,6 +2,7 @@ import { gameWinsAtom } from "@/lib/jotai/gameWins";
 import { useAtom } from "jotai";
 import { Loader2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { GameProps } from "../constants";
 import GameLost from "../game-lost";
 import GameWon from "../game-won";
 import Answer from "./answer";
@@ -10,10 +11,7 @@ import RemainingGuesses from "./remaining-guess";
 
 const MAX_WRONG_GUESSES = 6;
 
-interface HangManProps {
-  onSelectDifferentGame: () => void;
-}
-export default function HangMan({ onSelectDifferentGame }: HangManProps) {
+export default function HangMan({ onSelectDifferentGame }: GameProps) {
   const [gameWins, setGameWins] = useAtom(gameWinsAtom);
   const [answer, setAnswer] = useState("");
   const [hint, setHint] = useState("");

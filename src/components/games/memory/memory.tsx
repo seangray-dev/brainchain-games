@@ -1,13 +1,10 @@
 import { gameWinsAtom } from "@/lib/jotai/gameWins";
 import { useAtom } from "jotai";
 import React, { useEffect, useState } from "react";
+import { GameProps } from "../constants";
 import GameWon from "../game-won";
 
-interface MemoryProps {
-  onSelectDifferentGame: () => void;
-}
-
-export default function Memory({ onSelectDifferentGame }: MemoryProps) {
+export default function Memory({ onSelectDifferentGame }: GameProps) {
   const [gameWins, setGameWins] = useAtom(gameWinsAtom);
   const [gameWon, setGameWon] = useState(false);
   const [cards, setCards] = useState<string[]>([]);
