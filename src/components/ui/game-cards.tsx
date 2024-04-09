@@ -7,6 +7,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { gameWinsAtom } from "@/lib/jotai/gameWins";
+import { useAtom } from "jotai";
 import {
   CheckIcon,
   LockKeyholeOpenIcon,
@@ -15,7 +17,6 @@ import {
   SendToBackIcon,
   SkullIcon,
 } from "lucide-react";
-import { useState } from "react";
 import { Button } from "./button";
 
 const games = [
@@ -31,14 +32,7 @@ export default function GameCards({
 }: {
   selectGame: (id: string) => void;
 }) {
-  const [completedGames, setCompletedGames] = useState({});
-
-  const handleGameCompletion = (gameId) => {
-    setCompletedGames((prevState) => ({
-      ...prevState,
-      [gameId]: true,
-    }));
-  };
+  const [gameWins] = useAtom(gameWinsAtom);
 
   return (
     <TooltipProvider>
@@ -47,14 +41,14 @@ export default function GameCards({
           <Tooltip key={id}>
             <TooltipTrigger asChild>
               <div className="relative">
-                {completedGames[id] && (
-                  <Badge className="absolute -right-1 -top-1 z-10 bg-green-500 p-0">
+                {gameWins.get(id) && (
+                  <Badge className="absolute -right-1 -top-1 z-10 bg-green-500 p-0 hover:bg-green-500">
                     <CheckIcon className="text-white" size={14} />
                   </Badge>
                 )}
 
                 <Button
-                  disabled={completedGames[id]}
+                  disabled={gameWins.get(id)}
                   variant="secondary"
                   className="h-16 w-16 rounded-lg border"
                   onClick={() => selectGame(id)}

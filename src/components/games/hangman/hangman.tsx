@@ -1,3 +1,5 @@
+import { gameWinsAtom } from "@/lib/jotai/gameWins";
+import { useAtom } from "jotai";
 import { Loader2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 import GameLost from "../game-lost";
@@ -12,40 +14,13 @@ interface HangManProps {
   onSelectDifferentGame: () => void;
 }
 export default function HangMan({ onSelectDifferentGame }: HangManProps) {
+  const [gameWins, setGameWins] = useAtom(gameWinsAtom);
   const [answer, setAnswer] = useState("");
   const [hint, setHint] = useState("");
   const [guessedLetters, setGuessedLetters] = useState<Set<string>>(new Set());
   const [wrongGuesses, setWrongGuesses] = useState<Set<string>>(new Set());
   const [isLoading, setIsLoading] = useState(false);
   const [fetchTrigger, setFetchTrigger] = useState(false);
-
-  useEffect(() => {
-    const fetchWord = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch("/hangman", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          cache: "no-store",
-        });
-
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
-        }
-
-        const data = await response.json();
-        setAnswer(data.word || "");
-        setHint(data.hint || "");
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Failed to fetch word:", error);
-      }
-    };
-
-    fetchWord();
-  }, [fetchTrigger]);
 
   const answerLetters = new Set(
     String(answer)
@@ -75,6 +50,45 @@ export default function HangMan({ onSelectDifferentGame }: HangManProps) {
     setHint("");
     setFetchTrigger((prevTrigger) => !prevTrigger);
   };
+
+  useEffect(() => {
+    const fetchWord = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch("/hangman", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          cache: "no-store",
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        setAnswer(data.word || "");
+        setHint(data.hint || "");
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Failed to fetch word:", error);
+      }
+    };
+
+    fetchWord();
+  }, [fetchTrigger]);
+
+  useEffect(() => {
+    if (gameWon) {
+      // Update the gameWins atom to mark Hangman as won
+      setGameWins((prevWins) => {
+        const newWins = new Map(prevWins);
+        newWins.set("hangman", true);
+        return newWins;
+      });
+    }
+  }, [gameWon, setGameWins]);
 
   return (
     <>
