@@ -20,6 +20,7 @@ import HangmanInstructions from "../games/hangman/instructions";
 import HowToPlay from "../games/how-to-play";
 import MemoryInstructions from "../games/memory/instructions";
 import Memory from "../games/memory/memory";
+import Quiz from "../games/quiz/quiz";
 import { Button } from "../ui/button";
 import GameCards from "../ui/game-cards";
 
@@ -30,6 +31,7 @@ export default function SelectGame() {
     hangman: <HangmanInstructions />,
     memory: <MemoryInstructions />,
     decryption: <DecryptionInstructions />,
+    quiz: <DecryptionInstructions />,
   };
 
   const selectGame = (gameId: string) => {
@@ -48,6 +50,8 @@ export default function SelectGame() {
         return <Memory onSelectDifferentGame={goBackToGameSelection} />;
       case "decryption":
         return <Decryption onSelectDifferentGame={goBackToGameSelection} />;
+      case "quiz":
+        return <Quiz onSelectDifferentGame={goBackToGameSelection} />;
       default:
         return <div>Game not found</div>;
     }
