@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { gameWinsAtom } from "@/lib/jotai/gameWins";
-import { Label } from "@radix-ui/react-dropdown-menu";
 import { useAtom } from "jotai";
 import { TerminalIcon } from "lucide-react";
 import { useEffect, useState } from "react";
