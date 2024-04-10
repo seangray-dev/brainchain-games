@@ -13,6 +13,8 @@ import {
 } from "@/components/ui/alert-dialog";
 import { ArrowLeftIcon } from "lucide-react";
 import { useState } from "react";
+import Decryption from "../games/decryption/decryption";
+import DecryptionInstructions from "../games/decryption/instructions";
 import HangMan from "../games/hangman/hangman";
 import HangmanInstructions from "../games/hangman/instructions";
 import HowToPlay from "../games/how-to-play";
@@ -27,6 +29,7 @@ export default function SelectGame() {
   const gameInstructions: { [key: string]: JSX.Element } = {
     hangman: <HangmanInstructions />,
     memory: <MemoryInstructions />,
+    decryption: <DecryptionInstructions />,
   };
 
   const selectGame = (gameId: string) => {
@@ -43,6 +46,8 @@ export default function SelectGame() {
         return <HangMan onSelectDifferentGame={goBackToGameSelection} />;
       case "memory":
         return <Memory onSelectDifferentGame={goBackToGameSelection} />;
+      case "decryption":
+        return <Decryption onSelectDifferentGame={goBackToGameSelection} />;
       default:
         return <div>Game not found</div>;
     }

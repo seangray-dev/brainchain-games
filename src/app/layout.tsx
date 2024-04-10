@@ -1,6 +1,7 @@
 import SiteFooter from "@/components/layout/site-footer";
 import SiteNav from "@/components/layout/site-navigation";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -29,6 +30,7 @@ export default function RootLayout({
           <SiteNav />
           {children}
           <SiteFooter />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

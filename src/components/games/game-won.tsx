@@ -9,15 +9,12 @@ import {
 } from "@/components/ui/alert-dialog";
 import React, { useEffect, useState } from "react";
 
-interface GameLostProps {
+interface GameWon {
   gameWon: boolean;
   onSelectDifferentGame: () => void;
 }
 
-export default function GameWon({
-  gameWon,
-  onSelectDifferentGame,
-}: GameLostProps) {
+export default function GameWon({ gameWon, onSelectDifferentGame }: GameWon) {
   const [isOpen, setIsOpen] = useState(gameWon);
 
   useEffect(() => {
