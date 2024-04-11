@@ -21,6 +21,8 @@ import HowToPlay from "../games/how-to-play";
 import MemoryInstructions from "../games/memory/instructions";
 import Memory from "../games/memory/memory";
 import Quiz from "../games/quiz/quiz";
+import WordSearchInstructions from "../games/wordsearch/instructions";
+import WordSearch from "../games/wordsearch/word-search";
 import { Button } from "../ui/button";
 import GameCards from "../ui/game-cards";
 
@@ -32,6 +34,7 @@ export default function SelectGame() {
     memory: <MemoryInstructions />,
     decryption: <DecryptionInstructions />,
     quiz: <DecryptionInstructions />,
+    wordsearch: <WordSearchInstructions />,
   };
 
   const selectGame = (gameId: string) => {
@@ -52,6 +55,8 @@ export default function SelectGame() {
         return <Decryption onSelectDifferentGame={goBackToGameSelection} />;
       case "quiz":
         return <Quiz onSelectDifferentGame={goBackToGameSelection} />;
+      case "wordsearch":
+        return <WordSearch onSelectDifferentGame={goBackToGameSelection} />;
       default:
         return <div>Game not found</div>;
     }

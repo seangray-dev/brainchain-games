@@ -24,7 +24,7 @@ const games = [
   { id: "memory", Icon: SendToBackIcon },
   { id: "decryption", Icon: LockKeyholeOpenIcon },
   { id: "quiz", Icon: MessageCircleQuestionIcon },
-  { id: "word search", Icon: SearchIcon },
+  { id: "wordsearch", Icon: SearchIcon },
 ];
 
 export default function GameCards({
