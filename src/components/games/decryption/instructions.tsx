@@ -15,12 +15,12 @@ export default function DecryptionInstructions() {
       </li>
       <li>
         <strong>Input Your Decryption:</strong> Once you think you have decoded
-        the message, enter your answer into the provided text area. Be sure to
-        spell everything correctly and maintain the original formatting,
-        including spaces and punctuation marks.
+        the message, enter your answer into the provided text area and click on
+        the 'Decrypt' button. Be sure to spell everything correctly and maintain
+        the original formatting, including spaces and punctuation marks.
       </li>
       <li>
-        <strong>Verification:</strong>If your answer is correct, you'll receive
+        <strong>Verification:</strong> If your answer is correct, you'll receive
         confirmation that you've successfully deciphered the message.
       </li>
       <li>
