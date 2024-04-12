@@ -64,7 +64,7 @@ export default function Memory({ onSelectDifferentGame }: GameProps) {
               <div
                 className={`flip-card-inner ${flippedIndexes.includes(index) || matchedIndexes.includes(index) ? "is-flipped" : ""}`}
               >
-                <div className="flip-card-front flex items-center justify-center rounded-lg bg-card-foreground">
+                <div className="flip-card-front flex items-center justify-center rounded-lg bg-secondary">
                   <span className="text-4xl text-card">❓</span>
                 </div>
                 <div
