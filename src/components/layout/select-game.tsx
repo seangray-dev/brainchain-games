@@ -20,7 +20,8 @@ import HangmanInstructions from "../games/hangman/instructions";
 import HowToPlay from "../games/how-to-play";
 import MemoryInstructions from "../games/memory/instructions";
 import Memory from "../games/memory/memory";
-import Quiz from "../games/quiz/quiz";
+import TriviaInstructions from "../games/trivia/instructions";
+import Trivia from "../games/trivia/trivia";
 import WordSearchInstructions from "../games/wordsearch/instructions";
 import WordSearch from "../games/wordsearch/word-search";
 import { Button } from "../ui/button";
@@ -33,7 +34,7 @@ export default function SelectGame() {
     hangman: <HangmanInstructions />,
     memory: <MemoryInstructions />,
     decryption: <DecryptionInstructions />,
-    quiz: <DecryptionInstructions />,
+    trivia: <TriviaInstructions />,
     wordsearch: <WordSearchInstructions />,
   };
 
@@ -53,8 +54,8 @@ export default function SelectGame() {
         return <Memory onSelectDifferentGame={goBackToGameSelection} />;
       case "decryption":
         return <Decryption onSelectDifferentGame={goBackToGameSelection} />;
-      case "quiz":
-        return <Quiz onSelectDifferentGame={goBackToGameSelection} />;
+      case "trivia":
+        return <Trivia onSelectDifferentGame={goBackToGameSelection} />;
       case "wordsearch":
         return <WordSearch onSelectDifferentGame={goBackToGameSelection} />;
       default:

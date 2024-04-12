@@ -23,7 +23,7 @@ const games = [
   { id: "hangman", Icon: SkullIcon },
   { id: "memory", Icon: SendToBackIcon },
   { id: "decryption", Icon: LockKeyholeOpenIcon },
-  { id: "quiz", Icon: MessageCircleQuestionIcon },
+  { id: "trivia", Icon: MessageCircleQuestionIcon },
   { id: "wordsearch", Icon: SearchIcon },
 ];
 
