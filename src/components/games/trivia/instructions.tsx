@@ -1,4 +1,4 @@
-export default function QuizInstructions() {
+export default function TriviaInstructions() {
   return (
     <ul className="flex flex-col gap-2">
       <li>
