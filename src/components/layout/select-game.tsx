@@ -26,6 +26,7 @@ import WordSearchInstructions from "../games/wordsearch/instructions";
 import WordSearch from "../games/wordsearch/word-search";
 import { Button } from "../ui/button";
 import GameCards from "../ui/game-cards";
+import ProgressBar from "./progress-bar";
 
 export default function SelectGame() {
   const [currentGame, setCurrentGame] = useState<string | null>(null);
@@ -66,7 +67,10 @@ export default function SelectGame() {
   return (
     <div className="container flex flex-1 flex-col items-center justify-center">
       {!currentGame ? (
-        <GameCards selectGame={selectGame} />
+        <div className="flex flex-1 flex-col justify-between">
+          <GameCards selectGame={selectGame} />
+          <ProgressBar />
+        </div>
       ) : (
         <>
           <div className="mb-10 flex w-full items-center justify-between">
