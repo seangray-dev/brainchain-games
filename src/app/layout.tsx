@@ -1,8 +1,10 @@
-import SiteFooter from "@/components/layout/site-footer";
+import CompletetionAnimation from "@/components/layout/completion-animation";
 import SiteNav from "@/components/layout/site-navigation";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
+import { gameWinsAtom } from "@/lib/jotai/gameWins";
 import { cn } from "@/lib/utils";
+import { useAtom } from "jotai";
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
 import "./globals.css";
@@ -29,6 +31,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system">
           <SiteNav />
           {children}
+          <CompletetionAnimation />
           <Toaster />
         </ThemeProvider>
       </body>
