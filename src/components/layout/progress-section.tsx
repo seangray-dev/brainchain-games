@@ -12,7 +12,6 @@ import {
 import { gameWinsAtom } from "@/lib/jotai/gameWins";
 import { useAtom } from "jotai";
 import { Button } from "../ui/button";
-
 import { Progress } from "../ui/progress";
 
 export default function ProgressSection() {
