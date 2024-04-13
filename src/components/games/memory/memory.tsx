@@ -39,7 +39,8 @@ export default function Memory({ onSelectDifferentGame }: GameProps) {
   };
 
   useEffect(() => {
-    if (gameWon) {
+    if (matchedPairs === 8) {
+      setGameWon(true);
       setGameWins((prevWins: Map<string, boolean>) => {
         const newWins = new Map(prevWins);
         newWins.set("memory", true);
@@ -49,7 +50,7 @@ export default function Memory({ onSelectDifferentGame }: GameProps) {
         return newWins;
       });
     }
-  }, [gameWon, setGameWins]);
+  }, [matchedPairs, setGameWins]);
 
   return (
     <>

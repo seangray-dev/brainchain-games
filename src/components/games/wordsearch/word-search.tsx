@@ -63,7 +63,7 @@ export default function WordSearch({ onSelectDifferentGame }: GameProps) {
     if (gameWon) {
       setGameWins((prevWins: Map<string, boolean>) => {
         const newWins = new Map(prevWins);
-        newWins.set("wordsearch", true);
+        newWins.set("word-search", true);
         Cookies.set("gameWins", JSON.stringify(Array.from(newWins.entries())), {
           expires: 7,
         });
@@ -183,6 +183,7 @@ export default function WordSearch({ onSelectDifferentGame }: GameProps) {
 
     // Check to see if all words are found
     if (foundWords.length === wordsToFind.length) {
+      setGameWins(new Map(gameWins.set("word-search", true)));
       setGameWon(true);
     }
   };

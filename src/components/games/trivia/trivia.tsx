@@ -82,7 +82,7 @@ export default function Trivia({ onSelectDifferentGame }: GameProps) {
     if (gameWon) {
       setGameWins((prevWins: Map<string, boolean>) => {
         const newWins = new Map(prevWins);
-        newWins.set("memory", true);
+        newWins.set("trivia", true);
         Cookies.set("trivia", JSON.stringify(Array.from(newWins.entries())), {
           expires: 7,
         });
