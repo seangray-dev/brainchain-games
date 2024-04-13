@@ -66,7 +66,7 @@ export default function GameCards({
             className="relative"
           >
             {gameWins.get(game.id) && (
-              <Badge className="absolute -right-1 -top-1 z-10 bg-green-500">
+              <Badge className="absolute -right-1 -top-1 z-10 bg-green-500 p-0 hover:bg-green-500">
                 <CheckIcon className="text-white" size={14} />
               </Badge>
             )}
