@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { gameWinsAtom } from "@/lib/jotai/gameWins";
 import { useAtom } from "jotai";
+import Cookies from "js-cookie";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { Progress } from "../ui/progress";
@@ -24,8 +25,9 @@ export default function ProgressSection() {
   );
 
   const handleResetProgress = () => {
-    setGameWins(new Map());
-    localStorage.removeItem("gameWins");
+    const newWins = new Map();
+    setGameWins(newWins);
+    Cookies.set("gameWins", JSON.stringify(Array.from(newWins.entries())));
   };
 
   const isAllGamesCompleted = winsCount === 5;

@@ -36,7 +36,7 @@ export default function SelectGame() {
     memory: <MemoryInstructions />,
     decryption: <DecryptionInstructions />,
     trivia: <TriviaInstructions />,
-    wordsearch: <WordSearchInstructions />,
+    "word-search": <WordSearchInstructions />,
   };
 
   const selectGame = (gameId: string) => {
@@ -57,7 +57,7 @@ export default function SelectGame() {
         return <Decryption onSelectDifferentGame={goBackToGameSelection} />;
       case "trivia":
         return <Trivia onSelectDifferentGame={goBackToGameSelection} />;
-      case "wordsearch":
+      case "word-search":
         return <WordSearch onSelectDifferentGame={goBackToGameSelection} />;
       default:
         return <div>Game not found</div>;
