@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { gameWinsAtom } from "@/lib/jotai/gameWins";
 import { useAtom } from "jotai";
+import Cookies from "js-cookie";
 import { CheckIcon } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { GameProps } from "../constants";
@@ -54,10 +55,22 @@ export default function WordSearch({ onSelectDifferentGame }: GameProps) {
   // Check if all words are found
   useEffect(() => {
     if (foundWords.length === wordsToFind.length) {
-      setGameWins(new Map(gameWins.set("wordsearch", true)));
       setGameWon(true);
     }
   }, [foundWords, wordsToFind.length, setGameWins]);
+
+  useEffect(() => {
+    if (gameWon) {
+      setGameWins((prevWins: Map<string, boolean>) => {
+        const newWins = new Map(prevWins);
+        newWins.set("wordsearch", true);
+        Cookies.set("gameWins", JSON.stringify(Array.from(newWins.entries())), {
+          expires: 7,
+        });
+        return newWins;
+      });
+    }
+  }, [gameWon, setGameWins]);
 
   const getDirection = (firstPosition: number[], secondPosition: number[]) => {
     const [firstRow, firstCol] = firstPosition;
@@ -170,7 +183,6 @@ export default function WordSearch({ onSelectDifferentGame }: GameProps) {
 
     // Check to see if all words are found
     if (foundWords.length === wordsToFind.length) {
-      setGameWins(new Map(gameWins.set("wordsearch", true)));
       setGameWon(true);
     }
   };

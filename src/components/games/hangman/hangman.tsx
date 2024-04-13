@@ -1,5 +1,6 @@
 import { gameWinsAtom } from "@/lib/jotai/gameWins";
 import { useAtom } from "jotai";
+import Cookies from "js-cookie";
 import { Loader2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { GameProps } from "../constants";
@@ -79,6 +80,9 @@ export default function HangMan({ onSelectDifferentGame }: GameProps) {
       setGameWins((prevWins: Map<string, boolean>) => {
         const newWins = new Map(prevWins);
         newWins.set("hangman", true);
+        Cookies.set("gameWins", JSON.stringify(Array.from(newWins.entries())), {
+          expires: 7,
+        });
         return newWins;
       });
     }

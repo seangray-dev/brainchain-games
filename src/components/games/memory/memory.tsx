@@ -1,5 +1,6 @@
 import { gameWinsAtom } from "@/lib/jotai/gameWins";
 import { useAtom } from "jotai";
+import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import { GameProps } from "../constants";
 import GameWon from "../game-won";
@@ -38,15 +39,17 @@ export default function Memory({ onSelectDifferentGame }: GameProps) {
   };
 
   useEffect(() => {
-    if (matchedPairs === 8) {
-      setGameWins((prevWins) => {
+    if (gameWon) {
+      setGameWins((prevWins: Map<string, boolean>) => {
         const newWins = new Map(prevWins);
-        setGameWon(true);
         newWins.set("memory", true);
+        Cookies.set("gameWins", JSON.stringify(Array.from(newWins.entries())), {
+          expires: 7,
+        });
         return newWins;
       });
     }
-  }, [matchedPairs, setGameWins]);
+  }, [gameWon, setGameWins]);
 
   return (
     <>

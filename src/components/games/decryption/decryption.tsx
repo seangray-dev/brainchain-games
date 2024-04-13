@@ -4,6 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { gameWinsAtom } from "@/lib/jotai/gameWins";
 import { useAtom } from "jotai";
+import Cookies from "js-cookie";
 import { TerminalIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { GameProps } from "../constants";
@@ -80,6 +81,19 @@ export default function Decryption({ onSelectDifferentGame }: GameProps) {
   };
 
   useEffect(() => {
+    if (gameWon) {
+      setGameWins((prevWins: Map<string, boolean>) => {
+        const newWins = new Map(prevWins);
+        newWins.set("decryption", true);
+        Cookies.set("gameWins", JSON.stringify(Array.from(newWins.entries())), {
+          expires: 7,
+        });
+        return newWins;
+      });
+    }
+  }, [gameWon, setGameWins]);
+
+  useEffect(() => {
     const blockCopyShortcut = (e: any) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "c") {
         e.preventDefault();
@@ -102,10 +116,8 @@ export default function Decryption({ onSelectDifferentGame }: GameProps) {
     setCategory(selectedCategory);
     setIsLoading(true);
 
-    // Start with an initial scrambled message
     setAnimatedCipher(shuffleString("Loading..."));
 
-    // Simulate a loading animation by updating the animatedCipher every 100ms
     const animationInterval = setInterval(() => {
       setAnimatedCipher((prev) => shuffleString(prev));
     }, 100);
@@ -119,16 +131,16 @@ export default function Decryption({ onSelectDifferentGame }: GameProps) {
     })
       .then((response) => response.json())
       .then(({ message, hint }) => {
-        clearInterval(animationInterval); // Stop the loading animation
+        clearInterval(animationInterval);
         setOriginalMessage(message);
         const randomizedMessage = randomizeMessage(message);
-        setCipheredMessage(randomizedMessage); // Set the actual ciphered message
-        setAnimatedCipher(randomizedMessage); // Also update the animatedCipher to show the actual cipher
+        setCipheredMessage(randomizedMessage);
+        setAnimatedCipher(randomizedMessage);
         setHint(hint);
       })
       .catch((error) => {
         console.error("Error:", error);
-        clearInterval(animationInterval); // Ensure to clear the interval on error as well
+        clearInterval(animationInterval);
         toast({
           variant: "destructive",
           title: "Fetch error",

@@ -19,6 +19,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { gameWinsAtom } from "@/lib/jotai/gameWins";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useAtom } from "jotai";
+import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -79,9 +80,12 @@ export default function Trivia({ onSelectDifferentGame }: GameProps) {
 
   useEffect(() => {
     if (gameWon) {
-      setGameWins((prevWins) => {
+      setGameWins((prevWins: Map<string, boolean>) => {
         const newWins = new Map(prevWins);
-        newWins.set("trivia", true);
+        newWins.set("memory", true);
+        Cookies.set("trivia", JSON.stringify(Array.from(newWins.entries())), {
+          expires: 7,
+        });
         return newWins;
       });
     }
