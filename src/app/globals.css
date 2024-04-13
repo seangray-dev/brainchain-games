@@ -26,10 +26,6 @@
     --radius: 0.5rem;
   }
 
-  .class {
-    colour: #e11d48
-  }
-
   .dark {
     --background: 20 14.3% 4.1%;
     --foreground: 0 0% 95%;
