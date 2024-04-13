@@ -58,13 +58,10 @@ export default function HangMan({ onSelectDifferentGame }: GameProps) {
           headers: {
             "Content-Type": "application/json",
           },
-          cache: "no-store",
         });
-
         if (!response.ok) {
           throw new Error(`Error: ${response.status}`);
         }
-
         const data = await response.json();
         setAnswer(data.word || "");
         setHint(data.hint || "");
@@ -79,7 +76,7 @@ export default function HangMan({ onSelectDifferentGame }: GameProps) {
 
   useEffect(() => {
     if (gameWon) {
-      setGameWins((prevWins) => {
+      setGameWins((prevWins: Map<string, boolean>) => {
         const newWins = new Map(prevWins);
         newWins.set("hangman", true);
         return newWins;
@@ -93,7 +90,7 @@ export default function HangMan({ onSelectDifferentGame }: GameProps) {
         <div>
           <h2 className="mb-10 text-5xl font-bold">Hang Man</h2>
         </div>
-        <div className="container flex flex-1 flex-col gap-10">
+        <div className="container flex flex-1 flex-col gap-10 !px-0">
           {isLoading ? (
             <div className="flex h-full flex-1 flex-col items-center justify-center">
               <Loader2Icon size={32} className="animate-spin" />
