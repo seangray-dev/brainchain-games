@@ -2,7 +2,7 @@
 
 import ErrorCompletion from "@/components/ui/error-completion";
 import Cookies from "js-cookie";
-import { ArrowLeftIcon } from "lucide-react";
+import { ArrowLeftIcon, Loader2Icon } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -25,7 +25,14 @@ export default function ClaimNFTPage() {
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex flex-1 flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center gap-2">
+          <Loader2Icon size={32} className="animate-spin" />
+          Loading...
+        </div>
+      </div>
+    );
   }
 
   return (
