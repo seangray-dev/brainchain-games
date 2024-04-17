@@ -1,6 +1,5 @@
 import { createThirdwebClient, defineChain, getContract } from "thirdweb";
 import { sepolia } from "thirdweb/chains";
-import { CONTRACT_ABI } from "./contractAbi";
 
 const CLIENT_ID = process.env.NEXT_PUBLIC_TW_CLIENT_ID as string;
 
