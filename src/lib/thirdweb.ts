@@ -17,5 +17,4 @@ export const CONTRACT = getContract({
   client,
   chain,
   address: CONTRACT_ADDRESS,
-  // abi: CONTRACT_ABI,
 });
