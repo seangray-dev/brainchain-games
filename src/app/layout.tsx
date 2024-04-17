@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Instrument_Sans } from "next/font/google";
+import { ThirdwebProvider } from "thirdweb/react";
 import "./globals.css";
 
 const sans = Instrument_Sans({ subsets: ["latin"] });
@@ -27,10 +28,12 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system">
-          <SiteNav />
-          {children}
-          <CompletetionAnimation />
-          <Toaster />
+          <ThirdwebProvider>
+            <SiteNav />
+            {children}
+            <CompletetionAnimation />
+            <Toaster />
+          </ThirdwebProvider>
         </ThemeProvider>
       </body>
     </html>
