@@ -31,7 +31,7 @@ export default function RootLayout({
           <ThirdwebProvider>
             <SiteNav />
             {children}
-            <CompletetionAnimation />
+            {/* <CompletetionAnimation /> */}
             <Toaster />
           </ThirdwebProvider>
         </ThemeProvider>
